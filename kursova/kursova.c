@@ -279,8 +279,11 @@ ISR(TIMER1_COMPA_vect) {
 }
 
 void adc_init() {
-    ADMUX = (1 << REFS0) | (1 << MUX0) | (1 << MUX1) | (1 << MUX2);           
-    ADCSRA = (1 << ADEN) | (1 << ADTS1) | (1 << ADTS0); 
+    ADMUX |= (1 << REFS0) | (1 << MUX0) | (1 << MUX1) | (1 << MUX2);           
+    ADCSRA |= (1 << ADEN) | (1 << ADIE); 
+	SFIOR |= (1 << ADTS1) | (1 << ADTS0);
+	ADCSRA |= (1 << ADATE);
+
     sei();
 }
 void button(){
@@ -292,6 +295,7 @@ void button(){
             }
             break;
         case 1:
+		PORTD |= (1 << PD2);
             if(ok == 0){
                 hour = 1;
             }
@@ -314,10 +318,12 @@ void button(){
             digits[0] = time_val[2] / 10;
             break;
         case 2:
+		PORTD |= (1 << PD2);
             time_val[0] = time_val[1] = time_val[2] = 0;
             start = 1;
             break;
         case 3:
+		PORTD |= (1 << PD2);
             ok++;
             if(ok == 1){
                 hour = 0;
@@ -338,6 +344,7 @@ void button(){
             }
             break;
         case 4:
+		PORTD |= (1 << PD2);
             off++; 
             if(off%2 == 1){
                 PORTC = 0x00;
@@ -356,7 +363,7 @@ ISR(ADC_vect){
     int old_button = button_number;
     if(result > 797 && result < 838)
         button_number = 0;
-    else if(result > 0 && result < 204)
+    else if(result >= 0 && result < 100)
         button_number = 1;
     else if(result > 450 && result < 552)
         button_number = 2;    
@@ -403,8 +410,9 @@ ISR(TIMER2_COMP_vect) {
 }
 
 int main() {
-    DDRC = 0xFF;
-    DDRA = 0x3F;
+	DDRC = 0b11111111;
+	DDRA = 0b00111111;
+	DDRD = 0b00000100;
     PORTC = 0x00;
     PORTA = 0x00;
     
@@ -414,6 +422,6 @@ int main() {
     adc_init();
     
     while(1) {
-        // Основний цикл пустий, все робиться в перериваннях
+     // Основний цикл пустий, все робиться в перериваннях
     }
 }
