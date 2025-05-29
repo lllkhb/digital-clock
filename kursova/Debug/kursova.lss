@@ -3,33 +3,33 @@ kursova.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000528  00000000  00000000  00000094  2**1
+  0 .text         000004ea  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000014  00800060  00000528  000005bc  2**0
+  1 .data         00000016  00800060  000004ea  0000057e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          0000001b  00800074  00800074  000005d0  2**0
+  2 .bss          00000017  00800076  00800076  00000594  2**0
                   ALLOC
-  3 .stab         000006cc  00000000  00000000  000005d0  2**2
+  3 .stab         000006cc  00000000  00000000  00000594  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000090  00000000  00000000  00000c9c  2**0
+  4 .stabstr      00000090  00000000  00000000  00000c60  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 00000020  00000000  00000000  00000d2c  2**0
+  5 .debug_aranges 00000020  00000000  00000000  00000cf0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_pubnames 0000013a  00000000  00000000  00000d4c  2**0
+  6 .debug_pubnames 00000138  00000000  00000000  00000d10  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   00000325  00000000  00000000  00000e86  2**0
+  7 .debug_info   000002e9  00000000  00000000  00000e48  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 0000010a  00000000  00000000  000011ab  2**0
+  8 .debug_abbrev 0000010a  00000000  00000000  00001131  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   00000562  00000000  00000000  000012b5  2**0
+  9 .debug_line   00000512  00000000  00000000  0000123b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  000000b0  00000000  00000000  00001818  2**2
+ 10 .debug_frame  000000b0  00000000  00000000  00001750  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    00000148  00000000  00000000  000018c8  2**0
+ 11 .debug_str    00000159  00000000  00000000  00001800  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    00000079  00000000  00000000  00001a10  2**0
+ 12 .debug_loc    00000079  00000000  00000000  00001959  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_pubtypes 0000002b  00000000  00000000  00001a89  2**0
+ 13 .debug_pubtypes 0000002b  00000000  00000000  000019d2  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -38,7 +38,7 @@ Disassembly of section .text:
    0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
    4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
    8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-   c:	0c 94 36 02 	jmp	0x46c	; 0x46c <__vector_3>
+   c:	0c 94 17 02 	jmp	0x42e	; 0x42e <__vector_3>
   10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   18:	0c 94 5e 00 	jmp	0xbc	; 0xbc <__vector_6>
@@ -49,12 +49,12 @@ Disassembly of section .text:
   2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-  38:	0c 94 9c 01 	jmp	0x338	; 0x338 <__vector_14>
+  38:	0c 94 7d 01 	jmp	0x2fa	; 0x2fa <__vector_14>
   3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-  4c:	0c 94 2b 02 	jmp	0x456	; 0x456 <__vector_19>
+  4c:	0c 94 0c 02 	jmp	0x418	; 0x418 <__vector_19>
   50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
 
 00000054 <__ctors_end>:
@@ -69,18 +69,18 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	e8 e2       	ldi	r30, 0x28	; 40
-  68:	f5 e0       	ldi	r31, 0x05	; 5
+  66:	ea ee       	ldi	r30, 0xEA	; 234
+  68:	f4 e0       	ldi	r31, 0x04	; 4
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
   6e:	0d 92       	st	X+, r0
-  70:	a4 37       	cpi	r26, 0x74	; 116
+  70:	a6 37       	cpi	r26, 0x76	; 118
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
 
 00000076 <__do_clear_bss>:
   76:	10 e0       	ldi	r17, 0x00	; 0
-  78:	a4 e7       	ldi	r26, 0x74	; 116
+  78:	a6 e7       	ldi	r26, 0x76	; 118
   7a:	b0 e0       	ldi	r27, 0x00	; 0
   7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
 
@@ -88,11 +88,11 @@ Disassembly of section .text:
   7e:	1d 92       	st	X+, r1
 
 00000080 <.do_clear_bss_start>:
-  80:	af 38       	cpi	r26, 0x8F	; 143
+  80:	ad 38       	cpi	r26, 0x8D	; 141
   82:	b1 07       	cpc	r27, r17
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	0e 94 75 02 	call	0x4ea	; 0x4ea <main>
-  8a:	0c 94 92 02 	jmp	0x524	; 0x524 <_exit>
+  86:	0e 94 56 02 	call	0x4ac	; 0x4ac <main>
+  8a:	0c 94 73 02 	jmp	0x4e6	; 0x4e6 <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -106,7 +106,7 @@ void timer1_init_ctc() {
     TCNT1 = 0;
   92:	1d bc       	out	0x2d, r1	; 45
   94:	1c bc       	out	0x2c, r1	; 44
-    OCR1A = 15625;
+    OCR1A = 15625; // 1Hz
   96:	89 e0       	ldi	r24, 0x09	; 9
   98:	9d e3       	ldi	r25, 0x3D	; 61
   9a:	9b bd       	out	0x2b, r25	; 43
@@ -151,62 +151,62 @@ ISR(TIMER1_COMPA_vect) {
   d2:	9f 93       	push	r25
   d4:	ef 93       	push	r30
   d6:	ff 93       	push	r31
-    if(start == 1){
-  d8:	80 91 8d 00 	lds	r24, 0x008D
+    if (start == 1) {
+  d8:	80 91 8a 00 	lds	r24, 0x008A
   dc:	81 30       	cpi	r24, 0x01	; 1
   de:	09 f0       	breq	.+2      	; 0xe2 <__vector_6+0x26>
   e0:	47 c0       	rjmp	.+142    	; 0x170 <__vector_6+0xb4>
         time_val[0]++;
-  e2:	80 91 74 00 	lds	r24, 0x0074
+  e2:	80 91 76 00 	lds	r24, 0x0076
   e6:	8f 5f       	subi	r24, 0xFF	; 255
-  e8:	80 93 74 00 	sts	0x0074, r24
+  e8:	80 93 76 00 	sts	0x0076, r24
         if (time_val[0] == 60) {
   ec:	8c 33       	cpi	r24, 0x3C	; 60
   ee:	39 f4       	brne	.+14     	; 0xfe <__vector_6+0x42>
             time_val[0] = 0;
-  f0:	10 92 74 00 	sts	0x0074, r1
+  f0:	10 92 76 00 	sts	0x0076, r1
             time_val[1]++;
-  f4:	80 91 75 00 	lds	r24, 0x0075
+  f4:	80 91 77 00 	lds	r24, 0x0077
   f8:	8f 5f       	subi	r24, 0xFF	; 255
-  fa:	80 93 75 00 	sts	0x0075, r24
+  fa:	80 93 77 00 	sts	0x0077, r24
         }
         if (time_val[1] == 60) {
-  fe:	80 91 75 00 	lds	r24, 0x0075
+  fe:	80 91 77 00 	lds	r24, 0x0077
  102:	8c 33       	cpi	r24, 0x3C	; 60
  104:	39 f4       	brne	.+14     	; 0x114 <__vector_6+0x58>
             time_val[1] = 0;
- 106:	10 92 75 00 	sts	0x0075, r1
+ 106:	10 92 77 00 	sts	0x0077, r1
             time_val[2]++;
- 10a:	80 91 76 00 	lds	r24, 0x0076
+ 10a:	80 91 78 00 	lds	r24, 0x0078
  10e:	8f 5f       	subi	r24, 0xFF	; 255
- 110:	80 93 76 00 	sts	0x0076, r24
+ 110:	80 93 78 00 	sts	0x0078, r24
         }
         if (time_val[2] == 24) {
- 114:	80 91 76 00 	lds	r24, 0x0076
+ 114:	80 91 78 00 	lds	r24, 0x0078
  118:	88 31       	cpi	r24, 0x18	; 24
  11a:	11 f4       	brne	.+4      	; 0x120 <__vector_6+0x64>
             time_val[2] = 0;
- 11c:	10 92 76 00 	sts	0x0076, r1
+ 11c:	10 92 78 00 	sts	0x0078, r1
         }
         digits[5] = time_val[0] % 10;
- 120:	80 91 74 00 	lds	r24, 0x0074
- 124:	21 e8       	ldi	r18, 0x81	; 129
+ 120:	80 91 76 00 	lds	r24, 0x0076
+ 124:	23 e8       	ldi	r18, 0x83	; 131
  126:	30 e0       	ldi	r19, 0x00	; 0
  128:	4a e0       	ldi	r20, 0x0A	; 10
  12a:	64 2f       	mov	r22, r20
- 12c:	0e 94 86 02 	call	0x50c	; 0x50c <__udivmodqi4>
- 130:	90 93 81 00 	sts	0x0081, r25
- 134:	10 92 82 00 	sts	0x0082, r1
+ 12c:	0e 94 67 02 	call	0x4ce	; 0x4ce <__udivmodqi4>
+ 130:	90 93 83 00 	sts	0x0083, r25
+ 134:	10 92 84 00 	sts	0x0084, r1
         digits[4] = time_val[0] / 10;
  138:	f9 01       	movw	r30, r18
  13a:	32 97       	sbiw	r30, 0x02	; 2
  13c:	80 83       	st	Z, r24
  13e:	11 82       	std	Z+1, r1	; 0x01
         digits[3] = time_val[1] % 10;
- 140:	80 91 75 00 	lds	r24, 0x0075
+ 140:	80 91 77 00 	lds	r24, 0x0077
  144:	f9 01       	movw	r30, r18
  146:	34 97       	sbiw	r30, 0x04	; 4
- 148:	0e 94 86 02 	call	0x50c	; 0x50c <__udivmodqi4>
+ 148:	0e 94 67 02 	call	0x4ce	; 0x4ce <__udivmodqi4>
  14c:	90 83       	st	Z, r25
  14e:	11 82       	std	Z+1, r1	; 0x01
         digits[2] = time_val[1] / 10;
@@ -215,10 +215,10 @@ ISR(TIMER1_COMPA_vect) {
  154:	80 83       	st	Z, r24
  156:	11 82       	std	Z+1, r1	; 0x01
         digits[1] = time_val[2] % 10;
- 158:	80 91 76 00 	lds	r24, 0x0076
+ 158:	80 91 78 00 	lds	r24, 0x0078
  15c:	f9 01       	movw	r30, r18
  15e:	38 97       	sbiw	r30, 0x08	; 8
- 160:	0e 94 86 02 	call	0x50c	; 0x50c <__udivmodqi4>
+ 160:	0e 94 67 02 	call	0x4ce	; 0x4ce <__udivmodqi4>
  164:	90 83       	st	Z, r25
  166:	11 82       	std	Z+1, r1	; 0x01
         digits[0] = time_val[2] / 10;
@@ -254,27 +254,27 @@ void adc_init() {
  192:	86 b1       	in	r24, 0x06	; 6
  194:	88 68       	ori	r24, 0x88	; 136
  196:	86 b9       	out	0x06, r24	; 6
-	SFIOR |= (1 << ADTS1) | (1 << ADTS0);
+    SFIOR |= (1 << ADTS1) | (1 << ADTS0);
  198:	80 b7       	in	r24, 0x30	; 48
  19a:	80 66       	ori	r24, 0x60	; 96
  19c:	80 bf       	out	0x30, r24	; 48
-	ADCSRA |= (1 << ADATE);
+    ADCSRA |= (1 << ADATE);
  19e:	35 9a       	sbi	0x06, 5	; 6
-
     sei();
  1a0:	78 94       	sei
 }
  1a2:	08 95       	ret
 
 000001a4 <button>:
-void button(){
-    switch(button_number){
- 1a4:	80 91 85 00 	lds	r24, 0x0085
- 1a8:	90 91 86 00 	lds	r25, 0x0086
+
+void button() {
+    switch (button_number) {
+ 1a4:	80 91 87 00 	lds	r24, 0x0087
+ 1a8:	90 91 88 00 	lds	r25, 0x0088
  1ac:	82 30       	cpi	r24, 0x02	; 2
  1ae:	91 05       	cpc	r25, r1
  1b0:	09 f4       	brne	.+2      	; 0x1b4 <button+0x10>
- 1b2:	7b c0       	rjmp	.+246    	; 0x2aa <button+0x106>
+ 1b2:	71 c0       	rjmp	.+226    	; 0x296 <button+0xf2>
  1b4:	83 30       	cpi	r24, 0x03	; 3
  1b6:	91 05       	cpc	r25, r1
  1b8:	3c f4       	brge	.+14     	; 0x1c8 <button+0x24>
@@ -283,23 +283,23 @@ void button(){
  1be:	81 30       	cpi	r24, 0x01	; 1
  1c0:	91 05       	cpc	r25, r1
  1c2:	09 f0       	breq	.+2      	; 0x1c6 <button+0x22>
- 1c4:	b8 c0       	rjmp	.+368    	; 0x336 <button+0x192>
+ 1c4:	99 c0       	rjmp	.+306    	; 0x2f8 <button+0x154>
  1c6:	11 c0       	rjmp	.+34     	; 0x1ea <button+0x46>
  1c8:	83 30       	cpi	r24, 0x03	; 3
  1ca:	91 05       	cpc	r25, r1
  1cc:	09 f4       	brne	.+2      	; 0x1d0 <button+0x2c>
- 1ce:	78 c0       	rjmp	.+240    	; 0x2c0 <button+0x11c>
+ 1ce:	6e c0       	rjmp	.+220    	; 0x2ac <button+0x108>
  1d0:	84 30       	cpi	r24, 0x04	; 4
  1d2:	91 05       	cpc	r25, r1
  1d4:	09 f0       	breq	.+2      	; 0x1d8 <button+0x34>
- 1d6:	af c0       	rjmp	.+350    	; 0x336 <button+0x192>
- 1d8:	9e c0       	rjmp	.+316    	; 0x316 <button+0x172>
-        case 0: 
-            if(off == 1){
- 1da:	80 91 8e 00 	lds	r24, 0x008E
+ 1d6:	90 c0       	rjmp	.+288    	; 0x2f8 <button+0x154>
+ 1d8:	7f c0       	rjmp	.+254    	; 0x2d8 <button+0x134>
+        case 0: // нічого
+            if (off == 1) {
+ 1da:	80 91 8b 00 	lds	r24, 0x008B
  1de:	81 30       	cpi	r24, 0x01	; 1
  1e0:	09 f0       	breq	.+2      	; 0x1e4 <button+0x40>
- 1e2:	a9 c0       	rjmp	.+338    	; 0x336 <button+0x192>
+ 1e2:	8a c0       	rjmp	.+276    	; 0x2f8 <button+0x154>
                 PORTC = 0x00;
  1e4:	15 ba       	out	0x15, r1	; 21
                 PORTA = 0x00;
@@ -307,490 +307,466 @@ void button(){
  1e8:	08 95       	ret
             }
             break;
-        case 1:
-		PORTD |= (1 << PD2);
- 1ea:	92 9a       	sbi	0x12, 2	; 18
-            if(ok == 0){
- 1ec:	80 91 8c 00 	lds	r24, 0x008C
- 1f0:	88 23       	and	r24, r24
- 1f2:	31 f4       	brne	.+12     	; 0x200 <button+0x5c>
-                hour = 1;
- 1f4:	81 e0       	ldi	r24, 0x01	; 1
- 1f6:	90 e0       	ldi	r25, 0x00	; 0
- 1f8:	90 93 88 00 	sts	0x0088, r25
- 1fc:	80 93 87 00 	sts	0x0087, r24
-            }
-            counter++;
- 200:	20 91 8b 00 	lds	r18, 0x008B
- 204:	2f 5f       	subi	r18, 0xFF	; 255
- 206:	20 93 8b 00 	sts	0x008B, r18
-            if(hour == 1)
- 20a:	80 91 87 00 	lds	r24, 0x0087
- 20e:	90 91 88 00 	lds	r25, 0x0088
- 212:	81 30       	cpi	r24, 0x01	; 1
- 214:	91 05       	cpc	r25, r1
- 216:	31 f4       	brne	.+12     	; 0x224 <button+0x80>
-                time_val[2] = counter;
- 218:	20 93 76 00 	sts	0x0076, r18
-            if(hour == 1 && counter > 23)
- 21c:	28 31       	cpi	r18, 0x18	; 24
- 21e:	10 f0       	brcs	.+4      	; 0x224 <button+0x80>
-                counter = 0;
- 220:	10 92 8b 00 	sts	0x008B, r1
-            if(min == 1)
- 224:	80 91 89 00 	lds	r24, 0x0089
- 228:	81 30       	cpi	r24, 0x01	; 1
- 22a:	21 f4       	brne	.+8      	; 0x234 <button+0x90>
-                time_val[1] = counter;
- 22c:	90 91 8b 00 	lds	r25, 0x008B
- 230:	90 93 75 00 	sts	0x0075, r25
-            if(sec == 1)
- 234:	90 91 8a 00 	lds	r25, 0x008A
- 238:	91 30       	cpi	r25, 0x01	; 1
- 23a:	21 f4       	brne	.+8      	; 0x244 <button+0xa0>
-                time_val[0] = counter;
- 23c:	20 91 8b 00 	lds	r18, 0x008B
- 240:	20 93 74 00 	sts	0x0074, r18
-            if((min == 1 || sec == 1) && counter > 59)
- 244:	81 30       	cpi	r24, 0x01	; 1
- 246:	11 f0       	breq	.+4      	; 0x24c <button+0xa8>
- 248:	91 30       	cpi	r25, 0x01	; 1
- 24a:	31 f4       	brne	.+12     	; 0x258 <button+0xb4>
- 24c:	80 91 8b 00 	lds	r24, 0x008B
- 250:	8c 33       	cpi	r24, 0x3C	; 60
- 252:	10 f0       	brcs	.+4      	; 0x258 <button+0xb4>
-                counter = 0;
- 254:	10 92 8b 00 	sts	0x008B, r1
-            digits[5] = time_val[0] % 10;
- 258:	80 91 74 00 	lds	r24, 0x0074
- 25c:	21 e8       	ldi	r18, 0x81	; 129
- 25e:	30 e0       	ldi	r19, 0x00	; 0
- 260:	4a e0       	ldi	r20, 0x0A	; 10
- 262:	64 2f       	mov	r22, r20
- 264:	0e 94 86 02 	call	0x50c	; 0x50c <__udivmodqi4>
- 268:	90 93 81 00 	sts	0x0081, r25
- 26c:	10 92 82 00 	sts	0x0082, r1
-            digits[4] = time_val[0] / 10;
- 270:	f9 01       	movw	r30, r18
- 272:	32 97       	sbiw	r30, 0x02	; 2
- 274:	80 83       	st	Z, r24
- 276:	11 82       	std	Z+1, r1	; 0x01
-            digits[3] = time_val[1] % 10;
- 278:	80 91 75 00 	lds	r24, 0x0075
- 27c:	f9 01       	movw	r30, r18
- 27e:	34 97       	sbiw	r30, 0x04	; 4
- 280:	0e 94 86 02 	call	0x50c	; 0x50c <__udivmodqi4>
- 284:	90 83       	st	Z, r25
- 286:	11 82       	std	Z+1, r1	; 0x01
-            digits[2] = time_val[1] / 10;
- 288:	f9 01       	movw	r30, r18
- 28a:	36 97       	sbiw	r30, 0x06	; 6
- 28c:	80 83       	st	Z, r24
- 28e:	11 82       	std	Z+1, r1	; 0x01
-            digits[1] = time_val[2] % 10;
- 290:	80 91 76 00 	lds	r24, 0x0076
- 294:	f9 01       	movw	r30, r18
- 296:	38 97       	sbiw	r30, 0x08	; 8
- 298:	0e 94 86 02 	call	0x50c	; 0x50c <__udivmodqi4>
- 29c:	90 83       	st	Z, r25
- 29e:	11 82       	std	Z+1, r1	; 0x01
-            digits[0] = time_val[2] / 10;
- 2a0:	f9 01       	movw	r30, r18
- 2a2:	3a 97       	sbiw	r30, 0x0a	; 10
- 2a4:	80 83       	st	Z, r24
- 2a6:	11 82       	std	Z+1, r1	; 0x01
-            break;
- 2a8:	08 95       	ret
-        case 2:
-		PORTD |= (1 << PD2);
- 2aa:	92 9a       	sbi	0x12, 2	; 18
-            time_val[0] = time_val[1] = time_val[2] = 0;
- 2ac:	10 92 76 00 	sts	0x0076, r1
- 2b0:	10 92 75 00 	sts	0x0075, r1
- 2b4:	10 92 74 00 	sts	0x0074, r1
-            start = 1;
- 2b8:	81 e0       	ldi	r24, 0x01	; 1
- 2ba:	80 93 8d 00 	sts	0x008D, r24
-            break;
- 2be:	08 95       	ret
-        case 3:
-		PORTD |= (1 << PD2);
- 2c0:	92 9a       	sbi	0x12, 2	; 18
-            ok++;
- 2c2:	80 91 8c 00 	lds	r24, 0x008C
- 2c6:	8f 5f       	subi	r24, 0xFF	; 255
- 2c8:	80 93 8c 00 	sts	0x008C, r24
-            if(ok == 1){
- 2cc:	81 30       	cpi	r24, 0x01	; 1
- 2ce:	59 f4       	brne	.+22     	; 0x2e6 <button+0x142>
-                hour = 0;
- 2d0:	10 92 88 00 	sts	0x0088, r1
- 2d4:	10 92 87 00 	sts	0x0087, r1
-                min = 1;
- 2d8:	80 93 89 00 	sts	0x0089, r24
-                sec = 0;
- 2dc:	10 92 8a 00 	sts	0x008A, r1
-                counter = 0;
- 2e0:	10 92 8b 00 	sts	0x008B, r1
- 2e4:	08 95       	ret
-            }
-            else if(ok == 2){
- 2e6:	82 30       	cpi	r24, 0x02	; 2
- 2e8:	61 f4       	brne	.+24     	; 0x302 <button+0x15e>
-                hour = 0;
- 2ea:	10 92 88 00 	sts	0x0088, r1
- 2ee:	10 92 87 00 	sts	0x0087, r1
-                min = 0;
- 2f2:	10 92 89 00 	sts	0x0089, r1
-                sec = 1;
- 2f6:	81 e0       	ldi	r24, 0x01	; 1
- 2f8:	80 93 8a 00 	sts	0x008A, r24
-                counter = 0;
- 2fc:	10 92 8b 00 	sts	0x008B, r1
- 300:	08 95       	ret
-            }
-            else if(ok == 3){
- 302:	83 30       	cpi	r24, 0x03	; 3
- 304:	c1 f4       	brne	.+48     	; 0x336 <button+0x192>
-                start = 1;
- 306:	81 e0       	ldi	r24, 0x01	; 1
- 308:	80 93 8d 00 	sts	0x008D, r24
-                counter = 0;
- 30c:	10 92 8b 00 	sts	0x008B, r1
-                ok = 0;
- 310:	10 92 8c 00 	sts	0x008C, r1
- 314:	08 95       	ret
-            }
-            break;
-        case 4:
-		PORTD |= (1 << PD2);
- 316:	92 9a       	sbi	0x12, 2	; 18
-            off++; 
- 318:	80 91 8e 00 	lds	r24, 0x008E
- 31c:	8f 5f       	subi	r24, 0xFF	; 255
-            if(off%2 == 1){
- 31e:	80 ff       	sbrs	r24, 0
- 320:	08 c0       	rjmp	.+16     	; 0x332 <button+0x18e>
-                PORTC = 0x00;
- 322:	15 ba       	out	0x15, r1	; 21
-                PORTA = 0x00;
- 324:	1b ba       	out	0x1b, r1	; 27
-                start = 0;
- 326:	10 92 8d 00 	sts	0x008D, r1
-                off = 1;
- 32a:	81 e0       	ldi	r24, 0x01	; 1
- 32c:	80 93 8e 00 	sts	0x008E, r24
- 330:	08 95       	ret
-            } else{
-                off = 0;
- 332:	10 92 8e 00 	sts	0x008E, r1
- 336:	08 95       	ret
 
-00000338 <__vector_14>:
-            }        
+        case 1: // встановлення годин/хвилин/секунд
+            if (setting) {
+ 1ea:	80 91 60 00 	lds	r24, 0x0060
+ 1ee:	88 23       	and	r24, r24
+ 1f0:	09 f4       	brne	.+2      	; 0x1f4 <button+0x50>
+ 1f2:	82 c0       	rjmp	.+260    	; 0x2f8 <button+0x154>
+                counter++;
+ 1f4:	90 91 89 00 	lds	r25, 0x0089
+ 1f8:	9f 5f       	subi	r25, 0xFF	; 255
+ 1fa:	90 93 89 00 	sts	0x0089, r25
+                if (setting_phase == 0) { // години
+ 1fe:	80 91 8c 00 	lds	r24, 0x008C
+ 202:	88 23       	and	r24, r24
+ 204:	49 f4       	brne	.+18     	; 0x218 <button+0x74>
+                    if (counter > 23) counter = 0;
+ 206:	98 31       	cpi	r25, 0x18	; 24
+ 208:	10 f0       	brcs	.+4      	; 0x20e <button+0x6a>
+ 20a:	10 92 89 00 	sts	0x0089, r1
+                    time_val[2] = counter;
+ 20e:	80 91 89 00 	lds	r24, 0x0089
+ 212:	80 93 78 00 	sts	0x0078, r24
+ 216:	15 c0       	rjmp	.+42     	; 0x242 <button+0x9e>
+                } else if (setting_phase == 1) { // хвилини
+ 218:	81 30       	cpi	r24, 0x01	; 1
+ 21a:	49 f4       	brne	.+18     	; 0x22e <button+0x8a>
+                    if (counter > 59) counter = 0;
+ 21c:	9c 33       	cpi	r25, 0x3C	; 60
+ 21e:	10 f0       	brcs	.+4      	; 0x224 <button+0x80>
+ 220:	10 92 89 00 	sts	0x0089, r1
+                    time_val[1] = counter;
+ 224:	80 91 89 00 	lds	r24, 0x0089
+ 228:	80 93 77 00 	sts	0x0077, r24
+ 22c:	0a c0       	rjmp	.+20     	; 0x242 <button+0x9e>
+                } else if (setting_phase == 2) { // секунди
+ 22e:	82 30       	cpi	r24, 0x02	; 2
+ 230:	41 f4       	brne	.+16     	; 0x242 <button+0x9e>
+                    if (counter > 59) counter = 0;
+ 232:	9c 33       	cpi	r25, 0x3C	; 60
+ 234:	10 f0       	brcs	.+4      	; 0x23a <button+0x96>
+ 236:	10 92 89 00 	sts	0x0089, r1
+                    time_val[0] = counter;
+ 23a:	80 91 89 00 	lds	r24, 0x0089
+ 23e:	80 93 76 00 	sts	0x0076, r24
+                }
+
+                digits[5] = time_val[0] % 10;
+ 242:	80 91 76 00 	lds	r24, 0x0076
+ 246:	23 e8       	ldi	r18, 0x83	; 131
+ 248:	30 e0       	ldi	r19, 0x00	; 0
+ 24a:	4a e0       	ldi	r20, 0x0A	; 10
+ 24c:	64 2f       	mov	r22, r20
+ 24e:	0e 94 67 02 	call	0x4ce	; 0x4ce <__udivmodqi4>
+ 252:	90 93 83 00 	sts	0x0083, r25
+ 256:	10 92 84 00 	sts	0x0084, r1
+                digits[4] = time_val[0] / 10;
+ 25a:	f9 01       	movw	r30, r18
+ 25c:	32 97       	sbiw	r30, 0x02	; 2
+ 25e:	80 83       	st	Z, r24
+ 260:	11 82       	std	Z+1, r1	; 0x01
+                digits[3] = time_val[1] % 10;
+ 262:	80 91 77 00 	lds	r24, 0x0077
+ 266:	f9 01       	movw	r30, r18
+ 268:	34 97       	sbiw	r30, 0x04	; 4
+ 26a:	0e 94 67 02 	call	0x4ce	; 0x4ce <__udivmodqi4>
+ 26e:	90 83       	st	Z, r25
+ 270:	11 82       	std	Z+1, r1	; 0x01
+                digits[2] = time_val[1] / 10;
+ 272:	f9 01       	movw	r30, r18
+ 274:	36 97       	sbiw	r30, 0x06	; 6
+ 276:	80 83       	st	Z, r24
+ 278:	11 82       	std	Z+1, r1	; 0x01
+                digits[1] = time_val[2] % 10;
+ 27a:	80 91 78 00 	lds	r24, 0x0078
+ 27e:	f9 01       	movw	r30, r18
+ 280:	38 97       	sbiw	r30, 0x08	; 8
+ 282:	0e 94 67 02 	call	0x4ce	; 0x4ce <__udivmodqi4>
+ 286:	90 83       	st	Z, r25
+ 288:	11 82       	std	Z+1, r1	; 0x01
+                digits[0] = time_val[2] / 10;
+ 28a:	f9 01       	movw	r30, r18
+ 28c:	3a 97       	sbiw	r30, 0x0a	; 10
+ 28e:	80 83       	st	Z, r24
+ 290:	11 82       	std	Z+1, r1	; 0x01
+
+                PORTD |= (1 << PD2);
+ 292:	92 9a       	sbi	0x12, 2	; 18
+ 294:	08 95       	ret
+            }
+            break;
+
+        case 2: // запуск секундоміра
+            PORTD |= (1 << PD2);
+ 296:	92 9a       	sbi	0x12, 2	; 18
+            time_val[0] = time_val[1] = time_val[2] = 0;
+ 298:	10 92 78 00 	sts	0x0078, r1
+ 29c:	10 92 77 00 	sts	0x0077, r1
+ 2a0:	10 92 76 00 	sts	0x0076, r1
+            start = 1;
+ 2a4:	81 e0       	ldi	r24, 0x01	; 1
+ 2a6:	80 93 8a 00 	sts	0x008A, r24
+            break;
+ 2aa:	08 95       	ret
+
+        case 3: // фіксація та перехід до наступного етапу
+            PORTD |= (1 << PD2);
+ 2ac:	92 9a       	sbi	0x12, 2	; 18
+            if (setting) {
+ 2ae:	80 91 60 00 	lds	r24, 0x0060
+ 2b2:	88 23       	and	r24, r24
+ 2b4:	09 f1       	breq	.+66     	; 0x2f8 <button+0x154>
+                setting_phase++;
+ 2b6:	80 91 8c 00 	lds	r24, 0x008C
+ 2ba:	8f 5f       	subi	r24, 0xFF	; 255
+ 2bc:	80 93 8c 00 	sts	0x008C, r24
+                counter = 0;
+ 2c0:	10 92 89 00 	sts	0x0089, r1
+                if (setting_phase > 2) {
+ 2c4:	83 30       	cpi	r24, 0x03	; 3
+ 2c6:	c0 f0       	brcs	.+48     	; 0x2f8 <button+0x154>
+                    setting = 0;
+ 2c8:	10 92 60 00 	sts	0x0060, r1
+                    setting_phase = 0;
+ 2cc:	10 92 8c 00 	sts	0x008C, r1
+                    start = 1;
+ 2d0:	81 e0       	ldi	r24, 0x01	; 1
+ 2d2:	80 93 8a 00 	sts	0x008A, r24
+ 2d6:	08 95       	ret
+                }
+            }
+            break;
+
+        case 4: // вимикання/вмикання індикації
+            PORTD |= (1 << PD2);
+ 2d8:	92 9a       	sbi	0x12, 2	; 18
+            off++;
+ 2da:	80 91 8b 00 	lds	r24, 0x008B
+ 2de:	8f 5f       	subi	r24, 0xFF	; 255
+            if (off % 2 == 1) {
+ 2e0:	80 ff       	sbrs	r24, 0
+ 2e2:	08 c0       	rjmp	.+16     	; 0x2f4 <button+0x150>
+                PORTC = 0x00;
+ 2e4:	15 ba       	out	0x15, r1	; 21
+                PORTA = 0x00;
+ 2e6:	1b ba       	out	0x1b, r1	; 27
+                start = 0;
+ 2e8:	10 92 8a 00 	sts	0x008A, r1
+                off = 1;
+ 2ec:	81 e0       	ldi	r24, 0x01	; 1
+ 2ee:	80 93 8b 00 	sts	0x008B, r24
+ 2f2:	08 95       	ret
+            } else {
+                off = 0;
+ 2f4:	10 92 8b 00 	sts	0x008B, r1
+ 2f8:	08 95       	ret
+
+000002fa <__vector_14>:
+            }
             break;
     }
 }
 
-ISR(ADC_vect){
- 338:	1f 92       	push	r1
- 33a:	0f 92       	push	r0
- 33c:	0f b6       	in	r0, 0x3f	; 63
- 33e:	0f 92       	push	r0
- 340:	11 24       	eor	r1, r1
- 342:	2f 93       	push	r18
- 344:	3f 93       	push	r19
- 346:	4f 93       	push	r20
- 348:	5f 93       	push	r21
- 34a:	6f 93       	push	r22
- 34c:	7f 93       	push	r23
- 34e:	8f 93       	push	r24
- 350:	9f 93       	push	r25
- 352:	af 93       	push	r26
- 354:	bf 93       	push	r27
- 356:	ef 93       	push	r30
- 358:	ff 93       	push	r31
+ISR(ADC_vect) {
+ 2fa:	1f 92       	push	r1
+ 2fc:	0f 92       	push	r0
+ 2fe:	0f b6       	in	r0, 0x3f	; 63
+ 300:	0f 92       	push	r0
+ 302:	11 24       	eor	r1, r1
+ 304:	2f 93       	push	r18
+ 306:	3f 93       	push	r19
+ 308:	4f 93       	push	r20
+ 30a:	5f 93       	push	r21
+ 30c:	6f 93       	push	r22
+ 30e:	7f 93       	push	r23
+ 310:	8f 93       	push	r24
+ 312:	9f 93       	push	r25
+ 314:	af 93       	push	r26
+ 316:	bf 93       	push	r27
+ 318:	ef 93       	push	r30
+ 31a:	ff 93       	push	r31
     int result = ADC; 
- 35a:	84 b1       	in	r24, 0x04	; 4
- 35c:	95 b1       	in	r25, 0x05	; 5
+ 31c:	84 b1       	in	r24, 0x04	; 4
+ 31e:	95 b1       	in	r25, 0x05	; 5
     int old_button = button_number;
- 35e:	20 91 85 00 	lds	r18, 0x0085
- 362:	30 91 86 00 	lds	r19, 0x0086
-    if(result > 797 && result < 838)
- 366:	ac 01       	movw	r20, r24
- 368:	4e 51       	subi	r20, 0x1E	; 30
- 36a:	53 40       	sbci	r21, 0x03	; 3
- 36c:	48 32       	cpi	r20, 0x28	; 40
- 36e:	51 05       	cpc	r21, r1
- 370:	28 f4       	brcc	.+10     	; 0x37c <__vector_14+0x44>
+ 320:	20 91 87 00 	lds	r18, 0x0087
+ 324:	30 91 88 00 	lds	r19, 0x0088
+
+    if (result >= 790 && result <= 850)
+ 328:	ac 01       	movw	r20, r24
+ 32a:	46 51       	subi	r20, 0x16	; 22
+ 32c:	53 40       	sbci	r21, 0x03	; 3
+ 32e:	4d 33       	cpi	r20, 0x3D	; 61
+ 330:	51 05       	cpc	r21, r1
+ 332:	28 f4       	brcc	.+10     	; 0x33e <__vector_14+0x44>
         button_number = 0;
- 372:	10 92 86 00 	sts	0x0086, r1
- 376:	10 92 85 00 	sts	0x0085, r1
- 37a:	36 c0       	rjmp	.+108    	; 0x3e8 <__vector_14+0xb0>
-    else if(result >= 0 && result < 100)
- 37c:	84 36       	cpi	r24, 0x64	; 100
- 37e:	91 05       	cpc	r25, r1
- 380:	38 f4       	brcc	.+14     	; 0x390 <__vector_14+0x58>
+ 334:	10 92 88 00 	sts	0x0088, r1
+ 338:	10 92 87 00 	sts	0x0087, r1
+ 33c:	36 c0       	rjmp	.+108    	; 0x3aa <__vector_14+0xb0>
+    else if (result >= 0 && result <= 100)
+ 33e:	85 36       	cpi	r24, 0x65	; 101
+ 340:	91 05       	cpc	r25, r1
+ 342:	38 f4       	brcc	.+14     	; 0x352 <__vector_14+0x58>
         button_number = 1;
- 382:	81 e0       	ldi	r24, 0x01	; 1
- 384:	90 e0       	ldi	r25, 0x00	; 0
- 386:	90 93 86 00 	sts	0x0086, r25
- 38a:	80 93 85 00 	sts	0x0085, r24
- 38e:	2c c0       	rjmp	.+88     	; 0x3e8 <__vector_14+0xb0>
-    else if(result > 450 && result < 552)
- 390:	ac 01       	movw	r20, r24
- 392:	43 5c       	subi	r20, 0xC3	; 195
- 394:	51 40       	sbci	r21, 0x01	; 1
- 396:	45 36       	cpi	r20, 0x65	; 101
- 398:	51 05       	cpc	r21, r1
- 39a:	38 f4       	brcc	.+14     	; 0x3aa <__vector_14+0x72>
+ 344:	81 e0       	ldi	r24, 0x01	; 1
+ 346:	90 e0       	ldi	r25, 0x00	; 0
+ 348:	90 93 88 00 	sts	0x0088, r25
+ 34c:	80 93 87 00 	sts	0x0087, r24
+ 350:	2c c0       	rjmp	.+88     	; 0x3aa <__vector_14+0xb0>
+    else if (result >= 450 && result <= 550)
+ 352:	ac 01       	movw	r20, r24
+ 354:	42 5c       	subi	r20, 0xC2	; 194
+ 356:	51 40       	sbci	r21, 0x01	; 1
+ 358:	45 36       	cpi	r20, 0x65	; 101
+ 35a:	51 05       	cpc	r21, r1
+ 35c:	38 f4       	brcc	.+14     	; 0x36c <__vector_14+0x72>
         button_number = 2;    
- 39c:	82 e0       	ldi	r24, 0x02	; 2
- 39e:	90 e0       	ldi	r25, 0x00	; 0
- 3a0:	90 93 86 00 	sts	0x0086, r25
- 3a4:	80 93 85 00 	sts	0x0085, r24
- 3a8:	1f c0       	rjmp	.+62     	; 0x3e8 <__vector_14+0xb0>
-    else if(result > 613 && result < 710)
- 3aa:	ac 01       	movw	r20, r24
- 3ac:	46 56       	subi	r20, 0x66	; 102
- 3ae:	52 40       	sbci	r21, 0x02	; 2
- 3b0:	40 36       	cpi	r20, 0x60	; 96
- 3b2:	51 05       	cpc	r21, r1
- 3b4:	38 f4       	brcc	.+14     	; 0x3c4 <__vector_14+0x8c>
+ 35e:	82 e0       	ldi	r24, 0x02	; 2
+ 360:	90 e0       	ldi	r25, 0x00	; 0
+ 362:	90 93 88 00 	sts	0x0088, r25
+ 366:	80 93 87 00 	sts	0x0087, r24
+ 36a:	1f c0       	rjmp	.+62     	; 0x3aa <__vector_14+0xb0>
+    else if (result >= 650 && result <= 710)
+ 36c:	ac 01       	movw	r20, r24
+ 36e:	4a 58       	subi	r20, 0x8A	; 138
+ 370:	52 40       	sbci	r21, 0x02	; 2
+ 372:	4d 33       	cpi	r20, 0x3D	; 61
+ 374:	51 05       	cpc	r21, r1
+ 376:	38 f4       	brcc	.+14     	; 0x386 <__vector_14+0x8c>
         button_number = 3;
- 3b6:	83 e0       	ldi	r24, 0x03	; 3
- 3b8:	90 e0       	ldi	r25, 0x00	; 0
- 3ba:	90 93 86 00 	sts	0x0086, r25
- 3be:	80 93 85 00 	sts	0x0085, r24
- 3c2:	12 c0       	rjmp	.+36     	; 0x3e8 <__vector_14+0xb0>
-    else if(result > 716 && result < 790)
- 3c4:	8d 5c       	subi	r24, 0xCD	; 205
- 3c6:	92 40       	sbci	r25, 0x02	; 2
- 3c8:	89 34       	cpi	r24, 0x49	; 73
- 3ca:	91 05       	cpc	r25, r1
- 3cc:	38 f4       	brcc	.+14     	; 0x3dc <__vector_14+0xa4>
+ 378:	83 e0       	ldi	r24, 0x03	; 3
+ 37a:	90 e0       	ldi	r25, 0x00	; 0
+ 37c:	90 93 88 00 	sts	0x0088, r25
+ 380:	80 93 87 00 	sts	0x0087, r24
+ 384:	12 c0       	rjmp	.+36     	; 0x3aa <__vector_14+0xb0>
+    else if (result >= 740 && result < 790)
+ 386:	84 5e       	subi	r24, 0xE4	; 228
+ 388:	92 40       	sbci	r25, 0x02	; 2
+ 38a:	82 33       	cpi	r24, 0x32	; 50
+ 38c:	91 05       	cpc	r25, r1
+ 38e:	38 f4       	brcc	.+14     	; 0x39e <__vector_14+0xa4>
         button_number = 4;
- 3ce:	84 e0       	ldi	r24, 0x04	; 4
- 3d0:	90 e0       	ldi	r25, 0x00	; 0
- 3d2:	90 93 86 00 	sts	0x0086, r25
- 3d6:	80 93 85 00 	sts	0x0085, r24
- 3da:	06 c0       	rjmp	.+12     	; 0x3e8 <__vector_14+0xb0>
+ 390:	84 e0       	ldi	r24, 0x04	; 4
+ 392:	90 e0       	ldi	r25, 0x00	; 0
+ 394:	90 93 88 00 	sts	0x0088, r25
+ 398:	80 93 87 00 	sts	0x0087, r24
+ 39c:	06 c0       	rjmp	.+12     	; 0x3aa <__vector_14+0xb0>
     else
         button_number = -1;
- 3dc:	8f ef       	ldi	r24, 0xFF	; 255
- 3de:	9f ef       	ldi	r25, 0xFF	; 255
- 3e0:	90 93 86 00 	sts	0x0086, r25
- 3e4:	80 93 85 00 	sts	0x0085, r24
-        
-    if(button_number != old_button && button_number != -1){
- 3e8:	80 91 85 00 	lds	r24, 0x0085
- 3ec:	90 91 86 00 	lds	r25, 0x0086
- 3f0:	82 17       	cp	r24, r18
- 3f2:	93 07       	cpc	r25, r19
- 3f4:	31 f0       	breq	.+12     	; 0x402 <__vector_14+0xca>
- 3f6:	2f ef       	ldi	r18, 0xFF	; 255
- 3f8:	8f 3f       	cpi	r24, 0xFF	; 255
- 3fa:	92 07       	cpc	r25, r18
- 3fc:	11 f0       	breq	.+4      	; 0x402 <__vector_14+0xca>
+ 39e:	8f ef       	ldi	r24, 0xFF	; 255
+ 3a0:	9f ef       	ldi	r25, 0xFF	; 255
+ 3a2:	90 93 88 00 	sts	0x0088, r25
+ 3a6:	80 93 87 00 	sts	0x0087, r24
+	
+    if (button_number != old_button && button_number != -1) {
+ 3aa:	80 91 87 00 	lds	r24, 0x0087
+ 3ae:	90 91 88 00 	lds	r25, 0x0088
+ 3b2:	82 17       	cp	r24, r18
+ 3b4:	93 07       	cpc	r25, r19
+ 3b6:	31 f0       	breq	.+12     	; 0x3c4 <__vector_14+0xca>
+ 3b8:	2f ef       	ldi	r18, 0xFF	; 255
+ 3ba:	8f 3f       	cpi	r24, 0xFF	; 255
+ 3bc:	92 07       	cpc	r25, r18
+ 3be:	11 f0       	breq	.+4      	; 0x3c4 <__vector_14+0xca>
         button();
- 3fe:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <button>
+ 3c0:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <button>
+		result = 0;
     }
 }
- 402:	ff 91       	pop	r31
- 404:	ef 91       	pop	r30
- 406:	bf 91       	pop	r27
- 408:	af 91       	pop	r26
- 40a:	9f 91       	pop	r25
- 40c:	8f 91       	pop	r24
- 40e:	7f 91       	pop	r23
- 410:	6f 91       	pop	r22
- 412:	5f 91       	pop	r21
- 414:	4f 91       	pop	r20
- 416:	3f 91       	pop	r19
- 418:	2f 91       	pop	r18
- 41a:	0f 90       	pop	r0
- 41c:	0f be       	out	0x3f, r0	; 63
- 41e:	0f 90       	pop	r0
- 420:	1f 90       	pop	r1
- 422:	18 95       	reti
+ 3c4:	ff 91       	pop	r31
+ 3c6:	ef 91       	pop	r30
+ 3c8:	bf 91       	pop	r27
+ 3ca:	af 91       	pop	r26
+ 3cc:	9f 91       	pop	r25
+ 3ce:	8f 91       	pop	r24
+ 3d0:	7f 91       	pop	r23
+ 3d2:	6f 91       	pop	r22
+ 3d4:	5f 91       	pop	r21
+ 3d6:	4f 91       	pop	r20
+ 3d8:	3f 91       	pop	r19
+ 3da:	2f 91       	pop	r18
+ 3dc:	0f 90       	pop	r0
+ 3de:	0f be       	out	0x3f, r0	; 63
+ 3e0:	0f 90       	pop	r0
+ 3e2:	1f 90       	pop	r1
+ 3e4:	18 95       	reti
 
-00000424 <timer0_init_ctc>:
+000003e6 <timer0_init_ctc>:
 
-
-
-void timer0_init_ctc(){
- TCCR0 |= (1 << WGM01);          
- 424:	83 b7       	in	r24, 0x33	; 51
- 426:	88 60       	ori	r24, 0x08	; 8
- 428:	83 bf       	out	0x33, r24	; 51
+void timer0_init_ctc() {
+    TCCR0 |= (1 << WGM01);          
+ 3e6:	83 b7       	in	r24, 0x33	; 51
+ 3e8:	88 60       	ori	r24, 0x08	; 8
+ 3ea:	83 bf       	out	0x33, r24	; 51
     TCCR0 |= (1 << CS02);           
- 42a:	83 b7       	in	r24, 0x33	; 51
- 42c:	84 60       	ori	r24, 0x04	; 4
- 42e:	83 bf       	out	0x33, r24	; 51
+ 3ec:	83 b7       	in	r24, 0x33	; 51
+ 3ee:	84 60       	ori	r24, 0x04	; 4
+ 3f0:	83 bf       	out	0x33, r24	; 51
     OCR0 = 12;                  
- 430:	8c e0       	ldi	r24, 0x0C	; 12
- 432:	8c bf       	out	0x3c, r24	; 60
+ 3f2:	8c e0       	ldi	r24, 0x0C	; 12
+ 3f4:	8c bf       	out	0x3c, r24	; 60
     TIMSK |= (1 << OCIE0); 
- 434:	89 b7       	in	r24, 0x39	; 57
- 436:	82 60       	ori	r24, 0x02	; 2
- 438:	89 bf       	out	0x39, r24	; 57
+ 3f6:	89 b7       	in	r24, 0x39	; 57
+ 3f8:	82 60       	ori	r24, 0x02	; 2
+ 3fa:	89 bf       	out	0x39, r24	; 57
 }
- 43a:	08 95       	ret
+ 3fc:	08 95       	ret
 
-0000043c <timer2_init_ctc>:
+000003fe <timer2_init_ctc>:
 
-void timer2_init_ctc(){
+void timer2_init_ctc() {
     TCCR2 = 0;
- 43c:	15 bc       	out	0x25, r1	; 37
-    TCCR2 |= (1 << WGM21); // CTC mode
- 43e:	85 b5       	in	r24, 0x25	; 37
- 440:	88 60       	ori	r24, 0x08	; 8
- 442:	85 bd       	out	0x25, r24	; 37
+ 3fe:	15 bc       	out	0x25, r1	; 37
+    TCCR2 |= (1 << WGM21); // CTC
+ 400:	85 b5       	in	r24, 0x25	; 37
+ 402:	88 60       	ori	r24, 0x08	; 8
+ 404:	85 bd       	out	0x25, r24	; 37
     OCR2 = 12; 
- 444:	8c e0       	ldi	r24, 0x0C	; 12
- 446:	83 bd       	out	0x23, r24	; 35
+ 406:	8c e0       	ldi	r24, 0x0C	; 12
+ 408:	83 bd       	out	0x23, r24	; 35
     TIMSK |= (1 << OCIE2);
- 448:	89 b7       	in	r24, 0x39	; 57
- 44a:	80 68       	ori	r24, 0x80	; 128
- 44c:	89 bf       	out	0x39, r24	; 57
-    TCCR2 |= (1 << CS22) | (1 << CS21); // prescaler 128
- 44e:	85 b5       	in	r24, 0x25	; 37
- 450:	86 60       	ori	r24, 0x06	; 6
- 452:	85 bd       	out	0x25, r24	; 37
+ 40a:	89 b7       	in	r24, 0x39	; 57
+ 40c:	80 68       	ori	r24, 0x80	; 128
+ 40e:	89 bf       	out	0x39, r24	; 57
+    TCCR2 |= (1 << CS22) | (1 << CS21);
+ 410:	85 b5       	in	r24, 0x25	; 37
+ 412:	86 60       	ori	r24, 0x06	; 6
+ 414:	85 bd       	out	0x25, r24	; 37
 }
- 454:	08 95       	ret
+ 416:	08 95       	ret
 
-00000456 <__vector_19>:
+00000418 <__vector_19>:
 
 ISR(TIMER0_COMP_vect) {
- 456:	1f 92       	push	r1
- 458:	0f 92       	push	r0
- 45a:	0f b6       	in	r0, 0x3f	; 63
- 45c:	0f 92       	push	r0
- 45e:	11 24       	eor	r1, r1
-    // Запускаємо нове перетворення АЦП (перезапуск у free running не потрібен, але для упевненості)
+ 418:	1f 92       	push	r1
+ 41a:	0f 92       	push	r0
+ 41c:	0f b6       	in	r0, 0x3f	; 63
+ 41e:	0f 92       	push	r0
+ 420:	11 24       	eor	r1, r1
     ADCSRA |= (1 << ADSC);
- 460:	36 9a       	sbi	0x06, 6	; 6
+ 422:	36 9a       	sbi	0x06, 6	; 6
 }
- 462:	0f 90       	pop	r0
- 464:	0f be       	out	0x3f, r0	; 63
- 466:	0f 90       	pop	r0
- 468:	1f 90       	pop	r1
- 46a:	18 95       	reti
+ 424:	0f 90       	pop	r0
+ 426:	0f be       	out	0x3f, r0	; 63
+ 428:	0f 90       	pop	r0
+ 42a:	1f 90       	pop	r1
+ 42c:	18 95       	reti
 
-0000046c <__vector_3>:
+0000042e <__vector_3>:
 
 ISR(TIMER2_COMP_vect) {
- 46c:	1f 92       	push	r1
- 46e:	0f 92       	push	r0
- 470:	0f b6       	in	r0, 0x3f	; 63
- 472:	0f 92       	push	r0
- 474:	11 24       	eor	r1, r1
- 476:	2f 93       	push	r18
- 478:	3f 93       	push	r19
- 47a:	8f 93       	push	r24
- 47c:	9f 93       	push	r25
- 47e:	ef 93       	push	r30
- 480:	ff 93       	push	r31
-    PORTA = 0x00; // вимикаємо всі цифри
- 482:	1b ba       	out	0x1b, r1	; 27
+ 42e:	1f 92       	push	r1
+ 430:	0f 92       	push	r0
+ 432:	0f b6       	in	r0, 0x3f	; 63
+ 434:	0f 92       	push	r0
+ 436:	11 24       	eor	r1, r1
+ 438:	2f 93       	push	r18
+ 43a:	3f 93       	push	r19
+ 43c:	8f 93       	push	r24
+ 43e:	9f 93       	push	r25
+ 440:	ef 93       	push	r30
+ 442:	ff 93       	push	r31
+    PORTA = 0x00;
+ 444:	1b ba       	out	0x1b, r1	; 27
     PORTC = digit_segments[digits[current_digit]];
- 484:	80 91 83 00 	lds	r24, 0x0083
- 488:	90 91 84 00 	lds	r25, 0x0084
- 48c:	fc 01       	movw	r30, r24
- 48e:	ee 0f       	add	r30, r30
- 490:	ff 1f       	adc	r31, r31
- 492:	e9 58       	subi	r30, 0x89	; 137
- 494:	ff 4f       	sbci	r31, 0xFF	; 255
- 496:	01 90       	ld	r0, Z+
- 498:	f0 81       	ld	r31, Z
- 49a:	e0 2d       	mov	r30, r0
- 49c:	ee 0f       	add	r30, r30
- 49e:	ff 1f       	adc	r31, r31
- 4a0:	e0 5a       	subi	r30, 0xA0	; 160
- 4a2:	ff 4f       	sbci	r31, 0xFF	; 255
- 4a4:	20 81       	ld	r18, Z
- 4a6:	25 bb       	out	0x15, r18	; 21
+ 446:	80 91 85 00 	lds	r24, 0x0085
+ 44a:	90 91 86 00 	lds	r25, 0x0086
+ 44e:	fc 01       	movw	r30, r24
+ 450:	ee 0f       	add	r30, r30
+ 452:	ff 1f       	adc	r31, r31
+ 454:	e7 58       	subi	r30, 0x87	; 135
+ 456:	ff 4f       	sbci	r31, 0xFF	; 255
+ 458:	01 90       	ld	r0, Z+
+ 45a:	f0 81       	ld	r31, Z
+ 45c:	e0 2d       	mov	r30, r0
+ 45e:	ee 0f       	add	r30, r30
+ 460:	ff 1f       	adc	r31, r31
+ 462:	ef 59       	subi	r30, 0x9F	; 159
+ 464:	ff 4f       	sbci	r31, 0xFF	; 255
+ 466:	20 81       	ld	r18, Z
+ 468:	25 bb       	out	0x15, r18	; 21
     PORTA = (1 << current_digit);
- 4a8:	21 e0       	ldi	r18, 0x01	; 1
- 4aa:	30 e0       	ldi	r19, 0x00	; 0
- 4ac:	00 90 83 00 	lds	r0, 0x0083
- 4b0:	02 c0       	rjmp	.+4      	; 0x4b6 <__vector_3+0x4a>
- 4b2:	22 0f       	add	r18, r18
- 4b4:	33 1f       	adc	r19, r19
- 4b6:	0a 94       	dec	r0
- 4b8:	e2 f7       	brpl	.-8      	; 0x4b2 <__vector_3+0x46>
- 4ba:	2b bb       	out	0x1b, r18	; 27
+ 46a:	21 e0       	ldi	r18, 0x01	; 1
+ 46c:	30 e0       	ldi	r19, 0x00	; 0
+ 46e:	00 90 85 00 	lds	r0, 0x0085
+ 472:	02 c0       	rjmp	.+4      	; 0x478 <__stack+0x19>
+ 474:	22 0f       	add	r18, r18
+ 476:	33 1f       	adc	r19, r19
+ 478:	0a 94       	dec	r0
+ 47a:	e2 f7       	brpl	.-8      	; 0x474 <__stack+0x15>
+ 47c:	2b bb       	out	0x1b, r18	; 27
     current_digit++;
- 4bc:	01 96       	adiw	r24, 0x01	; 1
- 4be:	90 93 84 00 	sts	0x0084, r25
- 4c2:	80 93 83 00 	sts	0x0083, r24
+ 47e:	01 96       	adiw	r24, 0x01	; 1
+ 480:	90 93 86 00 	sts	0x0086, r25
+ 484:	80 93 85 00 	sts	0x0085, r24
     if (current_digit >= 6) current_digit = 0;
- 4c6:	86 30       	cpi	r24, 0x06	; 6
- 4c8:	91 05       	cpc	r25, r1
- 4ca:	24 f0       	brlt	.+8      	; 0x4d4 <__vector_3+0x68>
- 4cc:	10 92 84 00 	sts	0x0084, r1
- 4d0:	10 92 83 00 	sts	0x0083, r1
+ 488:	86 30       	cpi	r24, 0x06	; 6
+ 48a:	91 05       	cpc	r25, r1
+ 48c:	24 f0       	brlt	.+8      	; 0x496 <__stack+0x37>
+ 48e:	10 92 86 00 	sts	0x0086, r1
+ 492:	10 92 85 00 	sts	0x0085, r1
 }
- 4d4:	ff 91       	pop	r31
- 4d6:	ef 91       	pop	r30
- 4d8:	9f 91       	pop	r25
- 4da:	8f 91       	pop	r24
- 4dc:	3f 91       	pop	r19
- 4de:	2f 91       	pop	r18
- 4e0:	0f 90       	pop	r0
- 4e2:	0f be       	out	0x3f, r0	; 63
- 4e4:	0f 90       	pop	r0
- 4e6:	1f 90       	pop	r1
- 4e8:	18 95       	reti
+ 496:	ff 91       	pop	r31
+ 498:	ef 91       	pop	r30
+ 49a:	9f 91       	pop	r25
+ 49c:	8f 91       	pop	r24
+ 49e:	3f 91       	pop	r19
+ 4a0:	2f 91       	pop	r18
+ 4a2:	0f 90       	pop	r0
+ 4a4:	0f be       	out	0x3f, r0	; 63
+ 4a6:	0f 90       	pop	r0
+ 4a8:	1f 90       	pop	r1
+ 4aa:	18 95       	reti
 
-000004ea <main>:
+000004ac <main>:
 
 int main() {
-	DDRC = 0b11111111;
- 4ea:	8f ef       	ldi	r24, 0xFF	; 255
- 4ec:	84 bb       	out	0x14, r24	; 20
-	DDRA = 0b00111111;
- 4ee:	8f e3       	ldi	r24, 0x3F	; 63
- 4f0:	8a bb       	out	0x1a, r24	; 26
-	DDRD = 0b00000100;
- 4f2:	84 e0       	ldi	r24, 0x04	; 4
- 4f4:	81 bb       	out	0x11, r24	; 17
+    DDRC = 0b11111111;
+ 4ac:	8f ef       	ldi	r24, 0xFF	; 255
+ 4ae:	84 bb       	out	0x14, r24	; 20
+    DDRA = 0b00111111;
+ 4b0:	8f e3       	ldi	r24, 0x3F	; 63
+ 4b2:	8a bb       	out	0x1a, r24	; 26
+    DDRD = 0b00000100;
+ 4b4:	84 e0       	ldi	r24, 0x04	; 4
+ 4b6:	81 bb       	out	0x11, r24	; 17
     PORTC = 0x00;
- 4f6:	15 ba       	out	0x15, r1	; 21
+ 4b8:	15 ba       	out	0x15, r1	; 21
     PORTA = 0x00;
- 4f8:	1b ba       	out	0x1b, r1	; 27
-    
-    timer1_init_ctc(); // 1 секунда
- 4fa:	0e 94 49 00 	call	0x92	; 0x92 <timer1_init_ctc>
-    timer0_init_ctc(); // ADC запуск 300 Гц
- 4fe:	0e 94 12 02 	call	0x424	; 0x424 <timer0_init_ctc>
-    timer2_init_ctc(); // динамічна індикація ~1кГц
- 502:	0e 94 1e 02 	call	0x43c	; 0x43c <timer2_init_ctc>
+ 4ba:	1b ba       	out	0x1b, r1	; 27
+
+    timer1_init_ctc(); 
+ 4bc:	0e 94 49 00 	call	0x92	; 0x92 <timer1_init_ctc>
+    timer0_init_ctc(); 
+ 4c0:	0e 94 f3 01 	call	0x3e6	; 0x3e6 <timer0_init_ctc>
+    timer2_init_ctc(); 
+ 4c4:	0e 94 ff 01 	call	0x3fe	; 0x3fe <timer2_init_ctc>
     adc_init();
- 506:	0e 94 c6 00 	call	0x18c	; 0x18c <adc_init>
- 50a:	ff cf       	rjmp	.-2      	; 0x50a <main+0x20>
+ 4c8:	0e 94 c6 00 	call	0x18c	; 0x18c <adc_init>
+ 4cc:	ff cf       	rjmp	.-2      	; 0x4cc <main+0x20>
 
-0000050c <__udivmodqi4>:
- 50c:	99 1b       	sub	r25, r25
- 50e:	79 e0       	ldi	r23, 0x09	; 9
- 510:	04 c0       	rjmp	.+8      	; 0x51a <__udivmodqi4_ep>
+000004ce <__udivmodqi4>:
+ 4ce:	99 1b       	sub	r25, r25
+ 4d0:	79 e0       	ldi	r23, 0x09	; 9
+ 4d2:	04 c0       	rjmp	.+8      	; 0x4dc <__udivmodqi4_ep>
 
-00000512 <__udivmodqi4_loop>:
- 512:	99 1f       	adc	r25, r25
- 514:	96 17       	cp	r25, r22
- 516:	08 f0       	brcs	.+2      	; 0x51a <__udivmodqi4_ep>
- 518:	96 1b       	sub	r25, r22
+000004d4 <__udivmodqi4_loop>:
+ 4d4:	99 1f       	adc	r25, r25
+ 4d6:	96 17       	cp	r25, r22
+ 4d8:	08 f0       	brcs	.+2      	; 0x4dc <__udivmodqi4_ep>
+ 4da:	96 1b       	sub	r25, r22
 
-0000051a <__udivmodqi4_ep>:
- 51a:	88 1f       	adc	r24, r24
- 51c:	7a 95       	dec	r23
- 51e:	c9 f7       	brne	.-14     	; 0x512 <__udivmodqi4_loop>
- 520:	80 95       	com	r24
- 522:	08 95       	ret
+000004dc <__udivmodqi4_ep>:
+ 4dc:	88 1f       	adc	r24, r24
+ 4de:	7a 95       	dec	r23
+ 4e0:	c9 f7       	brne	.-14     	; 0x4d4 <__udivmodqi4_loop>
+ 4e2:	80 95       	com	r24
+ 4e4:	08 95       	ret
 
-00000524 <_exit>:
- 524:	f8 94       	cli
+000004e6 <_exit>:
+ 4e6:	f8 94       	cli
 
-00000526 <__stop_program>:
- 526:	ff cf       	rjmp	.-2      	; 0x526 <__stop_program>
+000004e8 <__stop_program>:
+ 4e8:	ff cf       	rjmp	.-2      	; 0x4e8 <__stop_program>
