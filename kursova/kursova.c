@@ -1,5 +1,12 @@
-﻿#include <avr/io.h>
+﻿
+#include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
+#include <stdlib.h>  //Перетворення строки в число або навпаки
+
+#define F_CPU_MK 1000000 //частота проца
+#define BAUD 9600UL //швидкість передачі даних UL-unsine long - тип данних
+#define UBRR_value (F_CPU_MK/(BAUD*16)) - 1  //12
 
 unsigned char time_val[3] = {0, 0, 0}; 
 int digits[6] = {0, 0, 0, 0, 0, 0};
@@ -9,9 +16,27 @@ char counter = 0;
 char start = 0;
 char off = 0;
 int s = 0;
+int result = -1;
 
 char setting = 1;
 char setting_phase = 0;
+
+
+
+void UART_Init(){ //Налаштування ЮАРТ
+  UBRRL = UBRR_value; 
+  UBRRH = UBRR_value>>8;
+  UCSRB = (1<<TXEN); //st 160
+  UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);
+}
+
+void UART_send(char value)//Функція для передачі даних
+{
+  while(!(UCSRA&(1<<UDRE)));
+  UDR = value;
+  
+}
+
 
 const int digit_segments[10] = {
     0b00111111, // 0
@@ -36,7 +61,13 @@ void timer1_init_ctc() {
     TIMSK |= (1 << OCIE1A);
     sei();
 }
-
+void led(){
+	for(int i=0; i<time_val[2]; i++){
+		PORTD |= (1 << PD2);
+		_delay_ms(100);
+		PORTD &= ~(1 << PD2);
+	}
+}
 ISR(TIMER1_COMPA_vect) {
     if (start == 1) {
         time_val[0]++;
@@ -47,6 +78,7 @@ ISR(TIMER1_COMPA_vect) {
         if (time_val[1] == 60) {
             time_val[1] = 0;
             time_val[2]++;
+			led();
         }
         if (time_val[2] == 24) {
             time_val[2] = 0;
@@ -60,11 +92,12 @@ ISR(TIMER1_COMPA_vect) {
     }
 }
 
+
 void adc_init() {
     ADMUX |= (1 << REFS0) | (1 << MUX0) | (1 << MUX1) | (1 << MUX2);           
     ADCSRA |= (1 << ADEN) | (1 << ADIE); 
     SFIOR |= (1 << ADTS1) | (1 << ADTS0);
-    ADCSRA |= (1 << ADATE);
+   // ADCSRA |= (1 << ADATE);
     sei();
 }
 
@@ -72,12 +105,13 @@ void button() {
     switch (button_number) {
         case 0: // нічого
             if (off == 1) {
-                PORTC = 0x00;
-                PORTA = 0x00;
+                PORTC = 0b00000000;
+                PORTA = 0b00000000;
             }
             break;
 
         case 1: // встановлення годин/хвилин/секунд
+		//if (result == 0){
             if (setting) {
                 counter++;
                 if (setting_phase == 0) { // години
@@ -98,13 +132,13 @@ void button() {
                 digits[1] = time_val[2] % 10;
                 digits[0] = time_val[2] / 10;
 
-                PORTD |= (1 << PD2);
             }
+			//}
             break;
 
         case 2: // запуск секундоміра
+	//	if (result >= 450 && result <= 550){
 			s++;
-            PORTD |= (1 << PD2);
 			if(s%2 == 1){
             time_val[0] = time_val[1] = time_val[2] = 0;
             start = 1;
@@ -116,11 +150,12 @@ void button() {
         digits[2] = time_val[1] / 10;
         digits[1] = time_val[2] % 10;
         digits[0] = time_val[2] / 10;
-			}						
+			}
+			//}						
             break;
 
         case 3: // фіксація та перехід до наступного етапу
-            PORTD |= (1 << PD2);
+		//if (result >= 600 && result <= 700){
             if (setting) {
                 setting_phase++;
                 counter = 0;
@@ -130,15 +165,14 @@ void button() {
                     start = 1;
                 }
             }
+			//}
             break;
 
-        case 4: // вимикання/вмикання індикації
-            PORTD |= (1 << PD2);
+        case 4: // вимикання/вмикання
             off++;
             if (off % 2 == 1) {
-                PORTC = 0x00;
-                PORTA = 0x00;
-                start = 0;
+                PORTC = 0b00000000;
+                PORTA = 0b00000000;
                 off = 1;
             } else {
                 off = 0;
@@ -148,26 +182,35 @@ void button() {
 }
 
 ISR(ADC_vect) {
-    int result = ADC; 
+    result = ADC; 
     int old_button = button_number;
 
-    if (result >= 790 && result <= 850)
+    if (result == 819)
         button_number = 0;
-    else if (result >= 0 && result <= 100)
+    else if (result == 0)
         button_number = 1;
-    else if (result >= 450 && result <= 550)
+    else if (result == 512)
         button_number = 2;    
-    else if (result >= 650 && result <= 710)
+    else if (result == 683)
         button_number = 3;
-    else if (result >= 740 && result < 790)
+    else if (result == 768)
         button_number = 4;
     else
         button_number = -1;
 	
     if (button_number != old_button && button_number != -1) {
         button();
+		//_delay_ms(100); 
 		result = 0;
     }
+	
+	  char buf[1];
+        itoa(result, buf, 10);   // Перетворення числа на рядок
+        for (int i = 0; buf[i] != '\0'; i++) {
+            UART_send(buf[i]);
+        }
+        UART_send('\n');  // Перехід на новий рядок для зручності
+    
 }
 
 void timer0_init_ctc() {
@@ -190,20 +233,22 @@ ISR(TIMER0_COMP_vect) {
 }
 
 ISR(TIMER2_COMP_vect) {
+	if(off == 0){
     PORTA = 0x00;
     PORTC = digit_segments[digits[current_digit]];
     PORTA = (1 << current_digit);
     current_digit++;
     if (current_digit >= 6) current_digit = 0;
+	}	
 }
 
 int main() {
     DDRC = 0b11111111;
     DDRA = 0b00111111;
     DDRD = 0b00000100;
-    PORTC = 0x00;
-    PORTA = 0x00;
-
+    PORTC = 0b00000000;
+    PORTA = 0b00000000;
+	UART_Init();
     timer1_init_ctc(); 
     timer0_init_ctc(); 
     timer2_init_ctc(); 
