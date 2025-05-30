@@ -3,11 +3,11 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include <stdlib.h>  //Перетворення строки в число або навпаки
-
+/*
 #define F_CPU_MK 1000000 //частота проца
 #define BAUD 9600UL //швидкість передачі даних UL-unsine long - тип данних
 #define UBRR_value (F_CPU_MK/(BAUD*16)) - 1  //12
-
+*/
 unsigned char time_val[3] = {0, 0, 0}; 
 int digits[6] = {0, 0, 0, 0, 0, 0};
 int current_digit = 0;
@@ -21,8 +21,7 @@ int result = -1;
 char setting = 1;
 char setting_phase = 0;
 
-
-
+/*
 void UART_Init(){ //Налаштування ЮАРТ
   UBRRL = UBRR_value; 
   UBRRH = UBRR_value>>8;
@@ -37,7 +36,7 @@ void UART_send(char value)//Функція для передачі даних
   
 }
 
-
+*/
 const int digit_segments[10] = {
     0b00111111, // 0
     0b00000110, // 1
@@ -61,13 +60,9 @@ void timer1_init_ctc() {
     TIMSK |= (1 << OCIE1A);
     sei();
 }
-void led(){
-	for(int i=0; i<time_val[2]; i++){
-		PORTD |= (1 << PD2);
-		_delay_ms(100);
-		PORTD &= ~(1 << PD2);
-	}
-}
+
+
+
 ISR(TIMER1_COMPA_vect) {
     if (start == 1) {
         time_val[0]++;
@@ -77,8 +72,10 @@ ISR(TIMER1_COMPA_vect) {
         }
         if (time_val[1] == 60) {
             time_val[1] = 0;
-            time_val[2]++;
-			led();
+            time_val[2]++;	
+			for(int i=0; i<time_val[2]; i++){
+			led();	
+			}			
         }
         if (time_val[2] == 24) {
             time_val[2] = 0;
@@ -92,12 +89,17 @@ ISR(TIMER1_COMPA_vect) {
     }
 }
 
+void led(){
+		PORTB |= (1 << PB7);
+			_delay_ms(300);
+			PORTB &= ~(1 << PB7);
+			_delay_ms(300);
+}
 
 void adc_init() {
     ADMUX |= (1 << REFS0) | (1 << MUX0) | (1 << MUX1) | (1 << MUX2);           
     ADCSRA |= (1 << ADEN) | (1 << ADIE); 
     SFIOR |= (1 << ADTS1) | (1 << ADTS0);
-   // ADCSRA |= (1 << ADATE);
     sei();
 }
 
@@ -111,7 +113,6 @@ void button() {
             break;
 
         case 1: // встановлення годин/хвилин/секунд
-		//if (result == 0){
             if (setting) {
                 counter++;
                 if (setting_phase == 0) { // години
@@ -131,13 +132,12 @@ void button() {
                 digits[2] = time_val[1] / 10;
                 digits[1] = time_val[2] % 10;
                 digits[0] = time_val[2] / 10;
-
+				
             }
-			//}
+		
             break;
 
         case 2: // запуск секундоміра
-	//	if (result >= 450 && result <= 550){
 			s++;
 			if(s%2 == 1){
             time_val[0] = time_val[1] = time_val[2] = 0;
@@ -145,17 +145,16 @@ void button() {
 			} else if (s%2 == 0){
 				start = 0;
 			 digits[5] = time_val[0] % 10;
-        digits[4] = time_val[0] / 10;
-        digits[3] = time_val[1] % 10;
-        digits[2] = time_val[1] / 10;
-        digits[1] = time_val[2] % 10;
-        digits[0] = time_val[2] / 10;
-			}
-			//}						
+			digits[4] = time_val[0] / 10;
+			digits[3] = time_val[1] % 10;
+			digits[2] = time_val[1] / 10;
+			digits[1] = time_val[2] % 10;
+			digits[0] = time_val[2] / 10;
+
+			}						
             break;
 
         case 3: // фіксація та перехід до наступного етапу
-		//if (result >= 600 && result <= 700){
             if (setting) {
                 setting_phase++;
                 counter = 0;
@@ -165,7 +164,7 @@ void button() {
                     start = 1;
                 }
             }
-			//}
+			
             break;
 
         case 4: // вимикання/вмикання
@@ -200,17 +199,16 @@ ISR(ADC_vect) {
 	
     if (button_number != old_button && button_number != -1) {
         button();
-		//_delay_ms(100); 
 		result = 0;
     }
-	
+	/*
 	  char buf[1];
         itoa(result, buf, 10);   // Перетворення числа на рядок
         for (int i = 0; buf[i] != '\0'; i++) {
             UART_send(buf[i]);
         }
         UART_send('\n');  // Перехід на новий рядок для зручності
-    
+    */
 }
 
 void timer0_init_ctc() {
@@ -240,21 +238,24 @@ ISR(TIMER2_COMP_vect) {
     current_digit++;
     if (current_digit >= 6) current_digit = 0;
 	}	
+	
 }
 
 int main() {
     DDRC = 0b11111111;
     DDRA = 0b00111111;
-    DDRD = 0b00000100;
+    DDRB = 0b10000000;
     PORTC = 0b00000000;
     PORTA = 0b00000000;
-	UART_Init();
+	PORTB = 0b00000000;
+	//UART_Init();
     timer1_init_ctc(); 
     timer0_init_ctc(); 
     timer2_init_ctc(); 
     adc_init();
 
+
     while (1) {
-        // основний цикл нічого не робить, усе на перериваннях
+		
     }
 }
